@@ -12,12 +12,10 @@ public class Main {
     public static void main(String[] args) {
 
         User user = new User();
-        user.setUserId(1);
         user.setNick("Test");
         user.setPassword("password");
 
         Note note = new Note();
-        note.setIdNote(1);
         note.setMessage("Ala ma kota");
         note.setMessageTime(LocalDate.now());
         note.setUser_id(user);
@@ -25,8 +23,6 @@ public class Main {
         user.getListNote().add(note);
 
         MainDao.saveInDataBase(user);
-        MainDao.saveInDataBase(note);
-
 
     }
 

@@ -9,6 +9,8 @@ import java.time.LocalDate;
 public class Note implements Serializable, Comparable<Note> {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOTE_SEQ")
+    @SequenceGenerator(name = "NOTE_SEQ", sequenceName = "NOTE_SEQUENCE", initialValue=0, allocationSize=1)
     private long idNote;
 
     @Column(nullable = false)

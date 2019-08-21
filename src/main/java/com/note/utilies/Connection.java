@@ -9,7 +9,7 @@ import org.hibernate.service.ServiceRegistry;
 
 public class Connection {
 
-    private static SessionFactory sessionFactory;
+    private final static SessionFactory sessionFactory;
 
     static
     {
@@ -17,7 +17,7 @@ public class Connection {
         sessionFactory = new MetadataSources(serviceRegistry).addAnnotatedClass(User.class).addAnnotatedClass(Note.class).buildMetadata().buildSessionFactory();
     }
 
-    public static SessionFactory getSessionFactory() {
+    static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
 

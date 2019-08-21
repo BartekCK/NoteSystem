@@ -10,10 +10,9 @@ import java.util.TreeSet;
 @Table(name = "USER")
 public class User implements Serializable
 {
-
-    //    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
-//    @SequenceGenerator(name = "USERS_SEQ", sequenceName = "SEQUENCE_USERS")
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
+    @SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQUENCE",initialValue=0, allocationSize=1)
     private long userId;
 
     @Column(nullable = false,unique = true)
@@ -22,7 +21,7 @@ public class User implements Serializable
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user_id")
+    @OneToMany(mappedBy = "user_id",cascade = CascadeType.ALL)
     private Set<Note> listNote = new TreeSet<>();
 
 

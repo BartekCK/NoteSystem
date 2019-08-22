@@ -17,20 +17,24 @@ public class Note implements Serializable, Comparable<Note> {
     private String message;
 
     @Column(name = "message_time",nullable = false)
-    private LocalDate messageTime;
+    private final LocalDate messageTime = LocalDate.now();
 
     @ManyToOne
     private User user_id;
 
+    public Note(){
+    }
 
-    public Note() {
+    public Note(String message,User user) {
+        this.message = message;
+        this.user_id = user;
     }
 
     public long getIdNote() {
         return idNote;
     }
 
-    public void setIdNote(long idNote) {
+    private void setIdNote(long idNote) {
         this.idNote = idNote;
     }
 
@@ -44,10 +48,6 @@ public class Note implements Serializable, Comparable<Note> {
 
     public LocalDate getMessageTime() {
         return messageTime;
-    }
-
-    public void setMessageTime(LocalDate messageTime) {
-        this.messageTime = messageTime;
     }
 
     public User getUser_id() {

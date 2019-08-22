@@ -56,7 +56,7 @@ public class User implements Serializable
         return listNote;
     }
 
-    public void setListNote(Set<Note> listNote) {
+    private void setListNote(Set<Note> listNote) {
         this.listNote = listNote;
     }
 

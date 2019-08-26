@@ -22,6 +22,9 @@ public class Note implements Serializable, Comparable<Note> {
     @ManyToOne
     private User user_id;
 
+    @Column(name = "is_done")
+    private boolean done;
+
     public Note(){
     }
 
@@ -34,7 +37,7 @@ public class Note implements Serializable, Comparable<Note> {
         return idNote;
     }
 
-    private void setIdNote(long idNote) {
+    public void setIdNote(long idNote) {
         this.idNote = idNote;
     }
 
@@ -56,6 +59,14 @@ public class Note implements Serializable, Comparable<Note> {
 
     public void setUser_id(User user_id) {
         this.user_id = user_id;
+    }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     @Override

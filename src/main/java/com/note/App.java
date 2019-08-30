@@ -1,14 +1,11 @@
 package com.note;
 
+import com.note.utilies.FxLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.util.Objects;
 
 public class App extends Application {
 
@@ -17,15 +14,11 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException, URISyntaxException {
+    public void start(Stage primaryStage)
+    {
 
-        try {
-            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/LoginPanel.fxml"));
-            primaryStage.setScene(new Scene(parent));
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        primaryStage.setScene(new Scene(Objects.requireNonNull(FxLoader.getParent("/fxml/LoginPanel.fxml"))));
+        primaryStage.show();
 
     }
 }

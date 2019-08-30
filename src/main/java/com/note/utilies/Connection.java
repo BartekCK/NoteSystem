@@ -1,5 +1,6 @@
 package com.note.utilies;
 
+import com.note.models.Boss;
 import com.note.models.Note;
 import com.note.models.User;
 import org.hibernate.SessionFactory;
@@ -14,11 +15,14 @@ public class Connection {
     static
     {
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().configure().build();
-        sessionFactory = new MetadataSources(serviceRegistry).addAnnotatedClass(User.class).addAnnotatedClass(Note.class).buildMetadata().buildSessionFactory();
+        sessionFactory = new MetadataSources(serviceRegistry).addAnnotatedClass(User.class).addAnnotatedClass(Note.class).addAnnotatedClass(Boss.class).buildMetadata().buildSessionFactory();
     }
 
     static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
+
+
 
 }

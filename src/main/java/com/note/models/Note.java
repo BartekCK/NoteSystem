@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "NOTE")
-public class Note implements Serializable, Comparable<Note> {
+public class Note implements Serializable, SaveOrder, Comparable<Note> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "NOTE_SEQ")

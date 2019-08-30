@@ -1,31 +1,31 @@
 package com.note.models;
 
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 import java.util.TreeSet;
 
 @Entity
 @Table(name = "USER")
-public class User implements Serializable
+public class User extends Person
 {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USERS_SEQ")
-    @SequenceGenerator(name = "USERS_SEQ", sequenceName = "USERS_SEQUENCE",initialValue=0, allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
+    @SequenceGenerator(name = "USER_SEQ", sequenceName = "USER_SEQUENCE",initialValue=0, allocationSize=1)
     private long userId;
 
-    @Column(nullable = false,unique = true)
-    private String nick;
-
-    @Column(nullable = false)
-    private String password;
-
     @OneToMany(mappedBy = "user_id",cascade = CascadeType.ALL)
-    private Set<Note> listNote = new TreeSet<>();
+    private Set<Note> noteSet = new TreeSet<>();
 
+
+    @ManyToOne
+    private Boss boss_id;
 
     public User() {
+    }
+
+    public User(String nick, String password) {
+        super(nick, password);
     }
 
     public long getUserId() {
@@ -36,36 +36,23 @@ public class User implements Serializable
         this.userId = userId;
     }
 
-    public String getNick() {
-        return nick;
+
+    public Boss getBoss_id() {
+        return boss_id;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setBoss_id(Boss boss_id) {
+        this.boss_id = boss_id;
     }
 
-    public String getPassword() {
-        return password;
+    public Set<Note> getNoteSet() {
+        return noteSet;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNoteSet(Set<Note> noteSet) {
+        this.noteSet = noteSet;
     }
 
-    public Set<Note> getListNote() {
-        return listNote;
-    }
 
-    private void setListNote(Set<Note> listNote) {
-        this.listNote = listNote;
-    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", nick='" + nick + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

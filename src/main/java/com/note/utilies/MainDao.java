@@ -26,7 +26,7 @@ public class MainDao {
     {
         try(Session session = Connection.getSessionFactory().openSession()){
             session.beginTransaction();
-            boss = (I) session.get(boss.getClass(),boss.getBossId());
+            boss = (I) session.get(boss.getClass(),boss.getPersonId());
             user.setBoss_id(boss);
             session.persist(user);
             session.getTransaction().commit();

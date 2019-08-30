@@ -13,7 +13,7 @@ public class Main
         MainDao.save(boss);
 
         User user = new User("User1","password1");
-        user.getNoteSet().add(new Note("Ala ma kota1",user));
+        user.getNoteSet().add(new Note("Ala ma kota1"));
         MainDao.save(user,boss);
     }
 

@@ -19,18 +19,14 @@ public class Note implements Serializable, SaveOrder, Comparable<Note> {
     @Column(name = "message_time",nullable = false)
     private final LocalDate messageTime = LocalDate.now();
 
-    @ManyToOne
-    private User user_id;
-
     @Column(name = "is_done")
     private boolean done;
 
     public Note(){
     }
 
-    public Note(String message,User user) {
+    public Note(String message) {
         this.message = message;
-        this.user_id = user;
     }
 
     public long getIdNote() {
@@ -51,14 +47,6 @@ public class Note implements Serializable, SaveOrder, Comparable<Note> {
 
     public LocalDate getMessageTime() {
         return messageTime;
-    }
-
-    public User getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
     }
 
     public boolean isDone() {

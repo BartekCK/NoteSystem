@@ -4,8 +4,7 @@ import com.note.models.Boss;
 import com.note.models.SaveOrder;
 import com.note.models.User;
 import org.hibernate.Session;
-
-import java.io.Serializable;
+import org.hibernate.query.Query;
 
 public class MainDao {
 
@@ -13,7 +12,7 @@ public class MainDao {
     {
         try(Session session = Connection.getSessionFactory().openSession()){
             session.beginTransaction();
-            session.persist(saveOrder);
+            session.saveOrUpdate(saveOrder);
             session.getTransaction().commit();
         }catch (Exception e)
         {
@@ -22,13 +21,18 @@ public class MainDao {
         }
     }
 
-    public static <T extends User,I extends Boss> void save(T user, I boss)
+    public static void addEmployee(Boss boss, User user)
     {
-        try(Session session = Connection.getSessionFactory().openSession()){
+        try(Session session  = Connection.getSessionFactory().openSession()){
             session.beginTransaction();
-            boss = (I) session.get(boss.getClass(),boss.getPersonId());
-            user.setBoss_id(boss);
-            session.persist(user);
+
+            Query query = session.createQuery("from User where nick = :userNick");
+            query.setParameter("userNick",user.getNick());
+
+            user = (User) query.uniqueResult();
+            boss = session.get(Boss.class,boss.getPersonId());
+            boss.getUserSet().add(user);
+
             session.getTransaction().commit();
         }catch (Exception e)
         {
@@ -37,15 +41,5 @@ public class MainDao {
         }
     }
 
-    public static <T extends Serializable> T dropFromDataBase(Class<T> cls, long id)
-    {
-        try(Session session = Connection.getSessionFactory().openSession()){
-            return session.get(cls,id);
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 }

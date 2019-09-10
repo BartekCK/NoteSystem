@@ -14,7 +14,13 @@ public class Main
 
         User user = new User("User1","password1");
         user.getNoteSet().add(new Note("Ala ma kota1"));
-        MainDao.save(user,boss);
+        MainDao.save(user);
+
+        MainDao.addEmployee(boss,user);
+
     }
+
+
+
 
 }

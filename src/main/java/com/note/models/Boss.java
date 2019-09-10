@@ -5,12 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Boss extends Person implements SaveOrder {
+public class Boss extends User implements SaveOrder {
 
-    @OneToMany(mappedBy = "boss_id",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "boss_user")
     private Set<User> userSet = new HashSet<>();
 
-    public Boss() {}
+    private Boss() {}
 
     public Boss(String nick, String password) {
         super(nick, password);

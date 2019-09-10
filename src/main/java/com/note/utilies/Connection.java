@@ -8,7 +8,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
 
-public class Connection {
+class Connection {
 
     private final static SessionFactory sessionFactory;
 
@@ -21,8 +21,6 @@ public class Connection {
     static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
-
 
 
 }

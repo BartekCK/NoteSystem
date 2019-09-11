@@ -17,7 +17,7 @@ public class User implements SaveOrder
     @Column(name = "nick", nullable = false,unique = true)
     protected String nick;
 
-    @Column(nullable = false)
+    @Column(name = "password", nullable = false)
     protected String password;
 
     @OneToMany(cascade = CascadeType.ALL)

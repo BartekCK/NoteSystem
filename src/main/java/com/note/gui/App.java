@@ -1,4 +1,4 @@
-package com.note;
+package com.note.gui;
 
 import com.note.utilies.FxLoader;
 import javafx.application.Application;

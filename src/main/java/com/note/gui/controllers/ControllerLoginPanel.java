@@ -1,6 +1,10 @@
-package com.note.controllers;
+package com.note.gui.controllers;
 
+import com.note.gui.utilies.MyDialog;
+import com.note.models.Boss;
+import com.note.models.User;
 import com.note.utilies.FxLoader;
+import com.note.utilies.MainDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -35,7 +39,19 @@ public class ControllerLoginPanel {
 
     @FXML
     void signIn(ActionEvent event) {
-        System.out.println("SIGNIN");
+        try {
+            User user = MainDao.findUser(usernameTextField.getText(),passwordTextField.getText());
+            if (user instanceof Boss)
+            {
+
+            }
+            else {
+
+            }
+        } catch (Exception e) {
+            MyDialog.catchError(e.getMessage());
+            incorrectData.setVisible(true);
+        }
     }
 
     static void setDefaultScene()

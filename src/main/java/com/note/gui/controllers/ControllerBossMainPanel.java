@@ -2,16 +2,21 @@ package com.note.gui.controllers;
 
 import com.note.gui.models.BossFx;
 import com.note.gui.models.UserFx;
+import com.note.gui.utilies.FxLoader;
+import com.note.gui.utilies.Path;
 import com.note.models.Boss;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ControllerBossMainPanel implements Initializable {
@@ -58,5 +63,10 @@ public class ControllerBossMainPanel implements Initializable {
 
     }
 
-
+    @FXML
+    void openNotes(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(Objects.requireNonNull(FxLoader.getParent(Path.PATH_NOTES))));
+        stage.show();
+    }
 }

@@ -7,7 +7,7 @@ import java.util.Set;
 @Entity
 public class Boss extends User implements SaveOrder {
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "boss_user")
     private Set<User> userSet = new HashSet<>();
 

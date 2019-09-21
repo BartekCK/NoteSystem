@@ -20,7 +20,7 @@ public class User implements SaveOrder
     @Column(name = "password", nullable = false)
     protected String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id",nullable = false)
     private Set<Note> noteSet = new TreeSet<>();
 

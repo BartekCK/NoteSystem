@@ -1,25 +1,41 @@
 package com.note.gui.models;
 
-import javafx.beans.property.*;
-import javafx.collections.ObservableSet;
+import com.note.models.User;
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class UserFx {
 
-    private IntegerProperty personId = new SimpleIntegerProperty();
-    ;
+    private LongProperty personId = new SimpleLongProperty();
 
     private StringProperty nick = new SimpleStringProperty();
 
     private StringProperty password = new SimpleStringProperty();;
 
-    private SetProperty<NoteFx> noteSet = new SimpleSetProperty<>();
+   private ObservableList<NoteFx> notesFx = FXCollections.observableArrayList();
 
-    public int getPersonId() {
+
+    public UserFx(User user) {
+        this.personId.setValue(user.getPersonId());
+        this.nick.setValue(user.getNick());
+        this.password.setValue(user.getPassword());
+        user.getNoteSet().forEach(e->notesFx.add(new NoteFx(e)));
+    }
+
+    public long getPersonId() {
         return personId.get();
     }
 
-    public IntegerProperty personIdProperty() {
+    public LongProperty personIdProperty() {
         return personId;
+    }
+
+    public void setPersonId(long personId) {
+        this.personId.set(personId);
     }
 
     public void setPersonId(int personId) {
@@ -50,15 +66,11 @@ public class UserFx {
         this.password.set(password);
     }
 
-    public ObservableSet<NoteFx> getNoteSet() {
-        return noteSet.get();
+    public ObservableList<NoteFx> getNotesFx() {
+        return notesFx;
     }
 
-    public SetProperty<NoteFx> noteSetProperty() {
-        return noteSet;
-    }
-
-    public void setNoteSet(ObservableSet<NoteFx> noteSet) {
-        this.noteSet.set(noteSet);
+    public void setNotesFx(ObservableList<NoteFx> notesFx) {
+        this.notesFx = notesFx;
     }
 }

@@ -1,6 +1,8 @@
 package com.note.gui.controllers;
 
+import com.note.gui.models.BossFx;
 import com.note.gui.models.UserFx;
+import com.note.models.Boss;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,11 +16,14 @@ import java.util.ResourceBundle;
 
 public class ControllerBossMainPanel implements Initializable {
 
+    private Boss boss;
+    private BossFx bossFx;
+
     @FXML
     private TableView<UserFx> mainTableView;
 
     @FXML
-    private TableColumn<UserFx, Long> idTableColumn;
+    private TableColumn<UserFx, Number> idTableColumn;
 
     @FXML
     private TableColumn<UserFx, String> usernameTableColumn;
@@ -31,7 +36,11 @@ public class ControllerBossMainPanel implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        boss = (Boss) ControllerLoginPanel.getUser();
+        bossFx = new BossFx(boss);
+        mainTableView.setItems(bossFx.getUsers());
+        idTableColumn.setCellValueFactory(cellData -> cellData.getValue().personIdProperty());
+        usernameTableColumn.setCellValueFactory(cellData -> cellData.getValue().nickProperty());
     }
 
     @FXML

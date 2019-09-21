@@ -1,4 +1,4 @@
-package com.note.utilies;
+package com.note.gui.utilies;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

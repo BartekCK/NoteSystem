@@ -1,4 +1,4 @@
-package com.note.gui.controllers;
+package com.note.gui.controllers.login;
 
 import com.note.gui.utilies.MyDialog;
 import com.note.gui.utilies.Path;

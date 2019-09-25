@@ -1,4 +1,4 @@
-package com.note.gui.controllers;
+package com.note.gui.controllers.boss;
 
 import com.note.api.utilies.MainDao;
 import com.note.gui.models.NoteFx;

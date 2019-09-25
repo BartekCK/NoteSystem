@@ -1,8 +1,9 @@
-package com.note.gui.controllers;
+package com.note.gui.controllers.boss;
 
 import com.note.api.models.Boss;
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
+import com.note.gui.controllers.login.ControllerLoginPanel;
 import com.note.gui.models.BossFx;
 import com.note.gui.models.UserFx;
 import com.note.gui.models.services.ServiceUserFx;

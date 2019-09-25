@@ -8,6 +8,8 @@ import com.note.gui.models.UserFx;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class MainDao {
 
     public static void save(SaveOrder saveOrder) throws Exception {
@@ -47,6 +49,20 @@ public class MainDao {
             query.setParameter("password",password);
             if (query.uniqueResult() instanceof User)
                 return (User) query.uniqueResult();
+            throw new Exception("Wrong data");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            throw new Exception("Wrong data");
+        }
+    }
+
+    public static List<User> findUser(String nick ) throws Exception {
+        try(Session session = Connection.getSessionFactory().openSession()){
+            Query query = session.createQuery("FROM User WHERE nick =:nick ");
+            query.setParameter("nick",nick);
+            if (query.list().get(0) instanceof User)
+                return query.list();
             throw new Exception("Wrong data");
         }
         catch (Exception e){

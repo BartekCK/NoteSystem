@@ -76,11 +76,6 @@ public class UserFx {
 
     @Override
     public String toString() {
-        return "UserFx{" +
-                "personId=" + personId +
-                ", nick=" + nick +
-                ", password=" + password +
-                ", notesFx=" + notesFx +
-                '}';
+        return nick.get();
     }
 }

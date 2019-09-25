@@ -1,10 +1,11 @@
 package com.note.gui.controllers;
 
+import com.note.api.models.Boss;
 import com.note.gui.models.BossFx;
 import com.note.gui.models.UserFx;
+import com.note.gui.models.services.ServiceUserFx;
 import com.note.gui.utilies.FxLoader;
 import com.note.gui.utilies.Path;
-import com.note.models.Boss;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +47,9 @@ public class ControllerBossMainPanel implements Initializable {
         mainTableView.setItems(bossFx.getUsers());
         idTableColumn.setCellValueFactory(cellData -> cellData.getValue().personIdProperty());
         usernameTableColumn.setCellValueFactory(cellData -> cellData.getValue().nickProperty());
+        mainTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            ServiceUserFx.setUserFx(newValue);
+        });
     }
 
     @FXML

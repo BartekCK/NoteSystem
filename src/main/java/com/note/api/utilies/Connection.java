@@ -1,8 +1,8 @@
-package com.note.utilies;
+package com.note.api.utilies;
 
-import com.note.models.Boss;
-import com.note.models.Note;
-import com.note.models.User;
+import com.note.api.models.Boss;
+import com.note.api.models.Note;
+import com.note.api.models.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

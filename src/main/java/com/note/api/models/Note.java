@@ -1,4 +1,4 @@
-package com.note.models;
+package com.note.api.models;
 
 import javax.persistence.*;
 import java.io.Serializable;

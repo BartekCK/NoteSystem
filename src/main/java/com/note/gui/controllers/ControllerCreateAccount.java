@@ -1,9 +1,9 @@
 package com.note.gui.controllers;
 
 import com.note.gui.utilies.MyDialog;
-import com.note.models.Boss;
-import com.note.models.User;
-import com.note.utilies.MainDao;
+import com.note.api.models.Boss;
+import com.note.api.models.User;
+import com.note.api.utilies.MainDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;

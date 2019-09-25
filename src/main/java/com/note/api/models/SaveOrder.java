@@ -1,4 +1,4 @@
-package com.note.models;
+package com.note.api.models;
 
 public interface SaveOrder {
 }

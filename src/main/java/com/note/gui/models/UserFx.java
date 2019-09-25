@@ -1,6 +1,6 @@
 package com.note.gui.models;
 
-import com.note.models.User;
+import com.note.api.models.User;
 import javafx.beans.property.LongProperty;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -72,5 +72,15 @@ public class UserFx {
 
     public void setNotesFx(ObservableList<NoteFx> notesFx) {
         this.notesFx = notesFx;
+    }
+
+    @Override
+    public String toString() {
+        return "UserFx{" +
+                "personId=" + personId +
+                ", nick=" + nick +
+                ", password=" + password +
+                ", notesFx=" + notesFx +
+                '}';
     }
 }

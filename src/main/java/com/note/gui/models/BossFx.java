@@ -1,6 +1,6 @@
 package com.note.gui.models;
 
-import com.note.models.Boss;
+import com.note.api.models.Boss;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

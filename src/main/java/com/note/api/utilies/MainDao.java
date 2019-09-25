@@ -1,8 +1,8 @@
-package com.note.utilies;
+package com.note.api.utilies;
 
-import com.note.models.Boss;
-import com.note.models.SaveOrder;
-import com.note.models.User;
+import com.note.api.models.Boss;
+import com.note.api.models.SaveOrder;
+import com.note.api.models.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 

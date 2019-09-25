@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -40,6 +41,7 @@ public class ControllerNote implements Initializable {
         messageTableColumn.setCellValueFactory(cellData -> cellData.getValue().messageProperty());
         dateTableColumn.setCellValueFactory(cellData -> cellData.getValue().messageTimeProperty());
         doneTableColumn.setCellValueFactory(cellData -> cellData.getValue().doneProperty());
+        doneTableColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
     }
 
     @FXML

@@ -69,4 +69,5 @@ public class NoteFx {
     public void setDone(boolean done) {
         this.done.set(done);
     }
+
 }

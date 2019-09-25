@@ -1,8 +1,10 @@
 package com.note.api.utilies;
 
 import com.note.api.models.Boss;
+import com.note.api.models.Note;
 import com.note.api.models.SaveOrder;
 import com.note.api.models.User;
+import com.note.gui.models.UserFx;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -53,5 +55,17 @@ public class MainDao {
         }
     }
 
+    public static void addNote(UserFx userFx,String message){
+        try(Session session = Connection.getSessionFactory().openSession()){
+            session.beginTransaction();
+            User user = session.get(User.class,userFx.getPersonId());
+            user.getNoteSet().add(new Note(message));
+            session.getTransaction().commit();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            Connection.getSessionFactory().openSession().getTransaction().rollback();
 
+        }
+    }
 }

@@ -20,7 +20,7 @@ public class Note implements Serializable, SaveOrder, Comparable<Note> {
     private final LocalDate messageTime = LocalDate.now();
 
     @Column(name = "is_done")
-    private boolean done;
+    private boolean done = false;
 
     public Note(){
     }

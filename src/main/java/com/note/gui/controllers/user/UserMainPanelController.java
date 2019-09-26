@@ -57,7 +57,6 @@ public class UserMainPanelController implements Initializable {
         user = LoginPanelController.getUser();
         userFx = new UserFx(user);
         setNoteTableView(tableView, userFx, idTableColumn, messageTableColumn, dateTableColumn, doneTableColumn);
-        datePicker.setValue(LocalDate.now());
         datePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
             tableView.setItems(userFx.getNotesFx().filtered(e->e.getMessageTime().isEqual(datePicker.getValue())));
         });

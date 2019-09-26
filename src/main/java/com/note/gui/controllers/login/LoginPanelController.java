@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-public class ControllerLoginPanel {
+public class LoginPanelController {
 
     private static Scene scene;
     private static Stage stage;
@@ -48,7 +48,7 @@ public class ControllerLoginPanel {
                 setNextScene(event,Path.PATH_BOSS_MAIN_PANEL);
             }
             else {
-                System.out.println("TEST");
+                setNextScene(event,Path.PATH_USER_MAIN_PANEL);
             }
         } catch (Exception e) {
             MyDialog.catchError(e.getMessage());

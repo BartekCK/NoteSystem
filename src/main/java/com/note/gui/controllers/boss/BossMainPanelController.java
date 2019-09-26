@@ -3,7 +3,7 @@ package com.note.gui.controllers.boss;
 import com.note.api.models.Boss;
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
-import com.note.gui.controllers.login.ControllerLoginPanel;
+import com.note.gui.controllers.login.LoginPanelController;
 import com.note.gui.models.BossFx;
 import com.note.gui.models.UserFx;
 import com.note.gui.models.services.ServiceUserFx;
@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ControllerBossMainPanel implements Initializable {
+public class BossMainPanelController implements Initializable {
 
     private Boss boss;
     private BossFx bossFx;
@@ -47,7 +47,7 @@ public class ControllerBossMainPanel implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        boss = (Boss) ControllerLoginPanel.getUser();
+        boss = (Boss) LoginPanelController.getUser();
         setTableView();
         mainTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             ServiceUserFx.setUserFx(newValue);

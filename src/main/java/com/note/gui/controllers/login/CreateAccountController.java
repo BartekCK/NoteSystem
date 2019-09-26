@@ -10,7 +10,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-public class ControllerCreateAccount {
+public class CreateAccountController {
 
     @FXML
     private TextField usernameTextField;
@@ -33,7 +33,7 @@ public class ControllerCreateAccount {
         }
         try {
             MainDao.save(user);
-            ControllerLoginPanel.setDefaultScene();
+            LoginPanelController.setDefaultScene();
         } catch (Exception e) {
             MyDialog.catchError(e.getMessage());
             usernameError.setVisible(true);

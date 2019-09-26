@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.note.gui.controllers.login.ControllerCreateAccount">
+<AnchorPane prefHeight="400.0" prefWidth="384.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.note.gui.controllers.login.CreateAccountController">
    <children>
       <Text layoutX="20.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create your personal account" />
       <Text layoutX="26.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />

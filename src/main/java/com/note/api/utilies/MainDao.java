@@ -4,6 +4,7 @@ import com.note.api.models.Boss;
 import com.note.api.models.Note;
 import com.note.api.models.SaveOrder;
 import com.note.api.models.User;
+import com.note.gui.models.NoteFx;
 import com.note.gui.models.UserFx;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -84,4 +85,18 @@ public class MainDao {
 
         }
     }
+
+    public static void changeNoteStatus(NoteFx noteFx){
+        try(Session session = Connection.getSessionFactory().openSession()){
+            session.beginTransaction();
+            Note note = session.get(Note.class,noteFx.getIdNote());
+            note.setDone(noteFx.isDone());
+            session.getTransaction().commit();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            Connection.getSessionFactory().openSession().getTransaction().rollback();
+        }
+    }
+
 }

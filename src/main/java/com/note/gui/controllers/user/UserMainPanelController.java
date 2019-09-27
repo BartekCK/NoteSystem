@@ -2,9 +2,11 @@ package com.note.gui.controllers.user;
 
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
+import com.note.gui.App;
 import com.note.gui.controllers.login.LoginPanelController;
 import com.note.gui.models.NoteFx;
 import com.note.gui.models.UserFx;
+import com.note.gui.utilies.TimerScheduler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -41,7 +43,7 @@ public class UserMainPanelController implements Initializable {
     private TableColumn<NoteFx, Boolean> doneTableColumn;
 
     @FXML
-    void doubleClick(MouseEvent event) {
+    private void doubleClick(MouseEvent event) {
         if (event.getClickCount() == 2){
             if (tableView.getSelectionModel().getSelectedItem().isDone())
                 tableView.getSelectionModel().getSelectedItem().setDone(false);
@@ -60,14 +62,85 @@ public class UserMainPanelController implements Initializable {
         datePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
             tableView.setItems(userFx.getNotesFx().filtered(e->e.getMessageTime().isEqual(datePicker.getValue())));
         });
+        synchornizeTheUser();
     }
 
     public static void setNoteTableView(TableView<NoteFx> tableView, UserFx userFx, TableColumn<NoteFx, Number> idTableColumn, TableColumn<NoteFx, String> messageTableColumn, TableColumn<NoteFx, LocalDate> dateTableColumn, TableColumn<NoteFx, Boolean> doneTableColumn) {
         tableView.setItems(userFx.getNotesFx());
+        tableView.getSortOrder().add(idTableColumn);
         idTableColumn.setCellValueFactory(cell-> cell.getValue().idNoteProperty());
         messageTableColumn.setCellValueFactory(cell-> cell.getValue().messageProperty());
         dateTableColumn.setCellValueFactory(cell-> cell.getValue().messageTimeProperty());
         doneTableColumn.setCellValueFactory(cellData -> cellData.getValue().doneProperty());
         doneTableColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
+    }
+
+    private void synchornizeTheUser(){
+        TimerScheduler timerScheduler = new TimerScheduler(this);
+        App.getTimer().scheduleAtFixedRate(timerScheduler,0,5*1000);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public UserFx getUserFx() {
+        return userFx;
+    }
+
+    public void setUserFx(UserFx userFx) {
+        this.userFx = userFx;
+    }
+
+    public DatePicker getDatePicker() {
+        return datePicker;
+    }
+
+    public void setDatePicker(DatePicker datePicker) {
+        this.datePicker = datePicker;
+    }
+
+    public TableView<NoteFx> getTableView() {
+        return tableView;
+    }
+
+    public void setTableView(TableView<NoteFx> tableView) {
+        this.tableView = tableView;
+    }
+
+    public TableColumn<NoteFx, Number> getIdTableColumn() {
+        return idTableColumn;
+    }
+
+    public void setIdTableColumn(TableColumn<NoteFx, Number> idTableColumn) {
+        this.idTableColumn = idTableColumn;
+    }
+
+    public TableColumn<NoteFx, String> getMessageTableColumn() {
+        return messageTableColumn;
+    }
+
+    public void setMessageTableColumn(TableColumn<NoteFx, String> messageTableColumn) {
+        this.messageTableColumn = messageTableColumn;
+    }
+
+    public TableColumn<NoteFx, LocalDate> getDateTableColumn() {
+        return dateTableColumn;
+    }
+
+    public void setDateTableColumn(TableColumn<NoteFx, LocalDate> dateTableColumn) {
+        this.dateTableColumn = dateTableColumn;
+    }
+
+    public TableColumn<NoteFx, Boolean> getDoneTableColumn() {
+        return doneTableColumn;
+    }
+
+    public void setDoneTableColumn(TableColumn<NoteFx, Boolean> doneTableColumn) {
+        this.doneTableColumn = doneTableColumn;
     }
 }

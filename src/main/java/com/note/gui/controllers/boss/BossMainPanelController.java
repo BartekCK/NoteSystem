@@ -3,6 +3,8 @@ package com.note.gui.controllers.boss;
 import com.note.api.models.Boss;
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
+import com.note.gui.App;
+import com.note.gui.controllers.UserBoss;
 import com.note.gui.controllers.login.LoginPanelController;
 import com.note.gui.models.BossFx;
 import com.note.gui.models.UserFx;
@@ -10,6 +12,7 @@ import com.note.gui.models.services.ServiceUserFx;
 import com.note.gui.utilies.FxLoader;
 import com.note.gui.utilies.MyDialog;
 import com.note.gui.utilies.Path;
+import com.note.gui.utilies.TimerScheduler;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,7 +27,7 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class BossMainPanelController implements Initializable {
+public class BossMainPanelController implements Initializable, UserBoss {
 
     private Boss boss;
     private BossFx bossFx;
@@ -49,13 +52,14 @@ public class BossMainPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boss = (Boss) LoginPanelController.getUser();
         setTableView();
+        synchornizeTheUser();
         mainTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             ServiceUserFx.setUserFx(newValue);
         });
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->userFx = newValue);
     }
 
-    private void setTableView() {
+    public void setTableView() {
         try {
             boss = (Boss) MainDao.findUser(boss.getNick(),boss.getPassword());
             this.bossFx = new BossFx(boss);
@@ -107,5 +111,10 @@ public class BossMainPanelController implements Initializable {
             MainDao.addEmployee(boss,new User(userFx.getNick(),userFx.getPassword()));
             setTableView();
         }
+    }
+
+    private void synchornizeTheUser(){
+        TimerScheduler timerScheduler = new TimerScheduler(this);
+        App.getTimer().scheduleAtFixedRate(timerScheduler,0,5*1000);
     }
 }

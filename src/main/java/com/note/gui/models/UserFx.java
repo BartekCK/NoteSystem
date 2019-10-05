@@ -18,6 +18,8 @@ public class UserFx {
 
    private ObservableList<NoteFx> notesFx = FXCollections.observableArrayList();
 
+    public UserFx() {
+    }
 
     public UserFx(User user) {
         this.personId.setValue(user.getPersonId());

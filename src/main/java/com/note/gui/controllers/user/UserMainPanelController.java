@@ -3,6 +3,7 @@ package com.note.gui.controllers.user;
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
 import com.note.gui.App;
+import com.note.gui.controllers.UserBoss;
 import com.note.gui.controllers.login.LoginPanelController;
 import com.note.gui.models.NoteFx;
 import com.note.gui.models.UserFx;
@@ -19,7 +20,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class UserMainPanelController implements Initializable {
+public class UserMainPanelController implements Initializable, UserBoss {
 
     private User user;
     private UserFx userFx;
@@ -75,7 +76,7 @@ public class UserMainPanelController implements Initializable {
         doneTableColumn.setCellFactory(tc -> new CheckBoxTableCell<>());
     }
 
-    private void synchornizeTheUser(){
+    private void synchornizeTheUser(){//SKROC
         TimerScheduler timerScheduler = new TimerScheduler(this);
         App.getTimer().scheduleAtFixedRate(timerScheduler,0,5*1000);
     }
@@ -91,6 +92,7 @@ public class UserMainPanelController implements Initializable {
     public UserFx getUserFx() {
         return userFx;
     }
+
 
     public void setUserFx(UserFx userFx) {
         this.userFx = userFx;

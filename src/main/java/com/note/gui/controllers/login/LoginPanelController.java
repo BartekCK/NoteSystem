@@ -1,11 +1,11 @@
 package com.note.gui.controllers.login;
 
-import com.note.gui.utilies.MyDialog;
-import com.note.gui.utilies.Path;
 import com.note.api.models.Boss;
 import com.note.api.models.User;
-import com.note.gui.utilies.FxLoader;
 import com.note.api.utilies.MainDao;
+import com.note.gui.utilies.FxLoader;
+import com.note.gui.utilies.MyDialog;
+import com.note.gui.utilies.Path;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;

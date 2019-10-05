@@ -2,6 +2,7 @@ package com.note.gui.utilies;
 
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
+import com.note.gui.App;
 import com.note.gui.controllers.UserBoss;
 import com.note.gui.controllers.boss.BossMainPanelController;
 import com.note.gui.controllers.user.UserMainPanelController;
@@ -11,11 +12,13 @@ import java.util.TimerTask;
 
 public class TimerScheduler extends TimerTask {
 
-    UserBoss userBoss;
+    private UserBoss userBoss;
 
     public TimerScheduler(UserBoss userBoss) {
         this.userBoss = userBoss;
+        App.getTimer().scheduleAtFixedRate(this,0,5*1000);
     }
+
 
     @Override
     public void run() {
@@ -37,9 +40,6 @@ public class TimerScheduler extends TimerTask {
                 BossMainPanelController bossMainPanelController = (BossMainPanelController) userBoss;
                 bossMainPanelController.setTableView();
             }
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

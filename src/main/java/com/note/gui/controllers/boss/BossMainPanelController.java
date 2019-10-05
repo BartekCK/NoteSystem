@@ -3,7 +3,6 @@ package com.note.gui.controllers.boss;
 import com.note.api.models.Boss;
 import com.note.api.models.User;
 import com.note.api.utilies.MainDao;
-import com.note.gui.App;
 import com.note.gui.controllers.UserBoss;
 import com.note.gui.controllers.login.LoginPanelController;
 import com.note.gui.models.BossFx;
@@ -23,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -52,9 +52,9 @@ public class BossMainPanelController implements Initializable, UserBoss {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         boss = (Boss) LoginPanelController.getUser();
         setTableView();
-        synchornizeTheUser();
+        TimerScheduler timerScheduler = new TimerScheduler(this);
         mainTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            ServiceUserFx.setUserFx(newValue);
+                ServiceUserFx.setUserFx(newValue);
         });
         listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->userFx = newValue);
     }
@@ -100,9 +100,16 @@ public class BossMainPanelController implements Initializable, UserBoss {
 
     @FXML
     void openNotes(ActionEvent actionEvent) {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(Objects.requireNonNull(FxLoader.getParent(Path.PATH_NOTES))));
-        stage.show();
+        try{
+            if(ServiceUserFx.getUserFx() == null)
+                throw new Exception("Select user first !");
+            Stage stage = new Stage();
+            stage.setScene(new Scene(Objects.requireNonNull(FxLoader.getParent(Path.PATH_NOTES))));
+            stage.show();
+        } catch (Exception e) {
+            MyDialog.catchError(e.getMessage());
+        }
+
     }
 
     @FXML
@@ -111,10 +118,5 @@ public class BossMainPanelController implements Initializable, UserBoss {
             MainDao.addEmployee(boss,new User(userFx.getNick(),userFx.getPassword()));
             setTableView();
         }
-    }
-
-    private void synchornizeTheUser(){
-        TimerScheduler timerScheduler = new TimerScheduler(this);
-        App.getTimer().scheduleAtFixedRate(timerScheduler,0,5*1000);
     }
 }

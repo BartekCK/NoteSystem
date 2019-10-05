@@ -13,11 +13,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.note.gui.controllers.boss.BossMainPanelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.note.gui.controllers.boss.BossMainPanelController">
    <center>
       <TableView fx:id="mainTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idTableColumn" editable="false" prefWidth="75.0" sortable="false" text="Id" />
           <TableColumn fx:id="usernameTableColumn" editable="false" prefWidth="135.0" sortable="false" text="Username" />
         </columns>
          <columnResizePolicy>

@@ -6,6 +6,7 @@ import com.note.gui.controllers.UserBoss;
 import com.note.gui.controllers.login.LoginPanelController;
 import com.note.gui.models.NoteFx;
 import com.note.gui.models.UserFx;
+import com.note.gui.utilies.MyDialog;
 import com.note.gui.utilies.TimerScheduler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.input.MouseEvent;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -31,9 +31,6 @@ public class UserMainPanelController implements Initializable, UserBoss {
     private TableView<NoteFx> tableView;
 
     @FXML
-    private TableColumn<NoteFx, Number> idTableColumn;
-
-    @FXML
     private TableColumn<NoteFx, String> messageTableColumn;
 
     @FXML
@@ -44,13 +41,18 @@ public class UserMainPanelController implements Initializable, UserBoss {
 
     @FXML
     private void doubleClick(MouseEvent event) {
-        if (event.getClickCount() == 2){
-            if (tableView.getSelectionModel().getSelectedItem().isDone())
-                tableView.getSelectionModel().getSelectedItem().setDone(false);
-            else
-                tableView.getSelectionModel().getSelectedItem().setDone(true);
-            MainDao.changeNoteStatus(tableView.getSelectionModel().getSelectedItem());
+        try {
+            if (event.getClickCount() == 2){
+                if (tableView.getSelectionModel().getSelectedItem().isDone())
+                    tableView.getSelectionModel().getSelectedItem().setDone(false);
+                else
+                    tableView.getSelectionModel().getSelectedItem().setDone(true);
+                MainDao.changeNoteStatus(tableView.getSelectionModel().getSelectedItem());
+            }
+        }catch (Exception e){
+            MyDialog.catchError(e.getMessage());
         }
+
 
     }
 
@@ -58,17 +60,16 @@ public class UserMainPanelController implements Initializable, UserBoss {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         user = LoginPanelController.getUser();
         userFx = new UserFx(user);
-        setNoteTableView(tableView, userFx, idTableColumn, messageTableColumn, dateTableColumn, doneTableColumn);
+        setNoteTableView(tableView, userFx, messageTableColumn, dateTableColumn, doneTableColumn);
         datePicker.valueProperty().addListener((observableValue, oldDate, newDate) -> {
             tableView.setItems(userFx.getNotesFx().filtered(e->e.getMessageTime().isEqual(datePicker.getValue())));
         });
         TimerScheduler timerScheduler = new TimerScheduler(this);
     }
 
-    public static void setNoteTableView(TableView<NoteFx> tableView, UserFx userFx, TableColumn<NoteFx, Number> idTableColumn, TableColumn<NoteFx, String> messageTableColumn, TableColumn<NoteFx, LocalDate> dateTableColumn, TableColumn<NoteFx, Boolean> doneTableColumn) {
+    public static void setNoteTableView(TableView<NoteFx> tableView, UserFx userFx, TableColumn<NoteFx, String> messageTableColumn, TableColumn<NoteFx, LocalDate> dateTableColumn, TableColumn<NoteFx, Boolean> doneTableColumn) {
         tableView.setItems(userFx.getNotesFx());
-        tableView.getSortOrder().add(idTableColumn);
-        idTableColumn.setCellValueFactory(cell-> cell.getValue().idNoteProperty());
+        tableView.getSortOrder().add(dateTableColumn);
         messageTableColumn.setCellValueFactory(cell-> cell.getValue().messageProperty());
         dateTableColumn.setCellValueFactory(cell-> cell.getValue().messageTimeProperty());
         doneTableColumn.setCellValueFactory(cellData -> cellData.getValue().doneProperty());
@@ -107,14 +108,6 @@ public class UserMainPanelController implements Initializable, UserBoss {
 
     public void setTableView(TableView<NoteFx> tableView) {
         this.tableView = tableView;
-    }
-
-    public TableColumn<NoteFx, Number> getIdTableColumn() {
-        return idTableColumn;
-    }
-
-    public void setIdTableColumn(TableColumn<NoteFx, Number> idTableColumn) {
-        this.idTableColumn = idTableColumn;
     }
 
     public TableColumn<NoteFx, String> getMessageTableColumn() {

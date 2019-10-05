@@ -10,10 +10,9 @@
       <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="319.0" VBox.vgrow="ALWAYS" />
       <TableView fx:id="tableView" onMouseClicked="#doubleClick" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="idTableColumn" editable="false" prefWidth="75.0" sortable="false" text="Id" />
           <TableColumn fx:id="messageTableColumn" editable="false" prefWidth="75.0" sortable="false" text="Message" />
-            <TableColumn fx:id="dateTableColumn" editable="false" prefWidth="75.0" sortable="false" text="Date" />
-            <TableColumn fx:id="doneTableColumn" prefWidth="75.0" sortable="false" text="Done" />
+            <TableColumn fx:id="dateTableColumn" editable="false" prefWidth="266.0" sortable="false" text="Date" />
+            <TableColumn fx:id="doneTableColumn" prefWidth="133.0" sortable="false" text="Done" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

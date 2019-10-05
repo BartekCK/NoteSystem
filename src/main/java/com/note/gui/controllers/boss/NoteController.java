@@ -24,9 +24,6 @@ public class NoteController implements Initializable {
     private TableView<NoteFx> tableView;
 
     @FXML
-    private TableColumn<NoteFx, Number> idTableColumn;
-
-    @FXML
     private TableColumn<NoteFx, String> messageTableColumn;
 
     @FXML
@@ -54,7 +51,7 @@ public class NoteController implements Initializable {
     private void setUserFx(){
         try {
             this.userFx = new UserFx(MainDao.findUser(userFx.getNick(),userFx.getPassword()));
-            UserMainPanelController.setNoteTableView(tableView, userFx, idTableColumn, messageTableColumn, dateTableColumn, doneTableColumn);
+            UserMainPanelController.setNoteTableView(tableView, userFx, messageTableColumn, dateTableColumn, doneTableColumn);
         } catch (Exception e) {
             e.printStackTrace();
         }

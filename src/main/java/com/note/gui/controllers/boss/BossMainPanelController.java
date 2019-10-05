@@ -22,7 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -35,9 +34,6 @@ public class BossMainPanelController implements Initializable, UserBoss {
 
     @FXML
     private TableView<UserFx> mainTableView;
-
-    @FXML
-    private TableColumn<UserFx, Number> idTableColumn;
 
     @FXML
     private TableColumn<UserFx, String> usernameTableColumn;
@@ -64,7 +60,6 @@ public class BossMainPanelController implements Initializable, UserBoss {
             boss = (Boss) MainDao.findUser(boss.getNick(),boss.getPassword());
             this.bossFx = new BossFx(boss);
             this.mainTableView.setItems(bossFx.getUsers());
-            this.idTableColumn.setCellValueFactory(cellData -> cellData.getValue().personIdProperty());
             this.usernameTableColumn.setCellValueFactory(cellData -> cellData.getValue().nickProperty());
         } catch (Exception e) {
             e.printStackTrace();

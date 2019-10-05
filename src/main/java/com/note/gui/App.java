@@ -4,6 +4,7 @@ import com.note.gui.utilies.FxLoader;
 import com.note.gui.utilies.Path;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class App extends Application {
 
         primaryStage.setScene(new Scene(Objects.requireNonNull(FxLoader.getParent(Path.PATH_LOGIN_PANEL))));
         primaryStage.setTitle("MyWorkNote");
+        primaryStage.getIcons().add(new Image(App.class.getResourceAsStream( "/images/sticky.png")));
         primaryStage.show();
         timer = new Timer();
 

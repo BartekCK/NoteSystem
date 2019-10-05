@@ -66,6 +66,7 @@ public class LoginPanelController {
         scene = ((Node)event.getSource()).getScene();
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(Objects.requireNonNull(FxLoader.getParent(path))));
+        stage.setOpacity(0.8);
     }
 
     public static User getUser() {

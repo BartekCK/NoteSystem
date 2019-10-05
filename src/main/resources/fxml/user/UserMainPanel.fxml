@@ -5,13 +5,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.note.gui.controllers.user.UserMainPanelController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="213.0" prefWidth="384.0" styleClass="Vbox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.note.gui.controllers.user.UserMainPanelController">
    <children>
       <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="319.0" VBox.vgrow="ALWAYS" />
       <TableView fx:id="tableView" onMouseClicked="#doubleClick" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="messageTableColumn" editable="false" prefWidth="75.0" sortable="false" text="Message" />
-            <TableColumn fx:id="dateTableColumn" editable="false" prefWidth="266.0" sortable="false" text="Date" />
+          <TableColumn fx:id="messageTableColumn" editable="false" prefWidth="167.0" sortable="false" text="Message" />
+            <TableColumn fx:id="dateTableColumn" editable="false" prefWidth="77.0" sortable="false" text="Date" />
             <TableColumn fx:id="doneTableColumn" prefWidth="133.0" sortable="false" text="Done" />
         </columns>
          <columnResizePolicy>

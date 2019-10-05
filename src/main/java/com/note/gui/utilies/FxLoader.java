@@ -10,7 +10,9 @@ public class FxLoader {
     public static Parent getParent(String path)
     {
         try {
-            return FXMLLoader.load(FxLoader.class.getResource(path));
+            Parent parent = FXMLLoader.load(FxLoader.class.getResource(path));
+            parent.getStylesheets().addAll(FxLoader.class.getResource(Path.PATH_CSS).toExternalForm());
+            return parent;
         } catch (IOException e) {
             e.printStackTrace();
         }
